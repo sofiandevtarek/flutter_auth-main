@@ -6,17 +6,20 @@ class TextFF extends StatelessWidget {
     required this.obscureText,
     required this.what,
     this.textInputType,
+    required this.controller,
   });
 
   final bool obscureText;
   final String what;
   final TextInputType? textInputType;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30),
       child: TextFormField(
+        controller: controller,
         cursorColor: Colors.tealAccent,
         style: TextStyle(color: Colors.white),
         keyboardType: textInputType,

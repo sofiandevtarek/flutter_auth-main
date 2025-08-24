@@ -1,9 +1,35 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/pages/profile.dart';
+import 'package:flutter_auth/pages/home.dart';
 import 'package:flutter_auth/widgets/text_ff.dart';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   const SignUp({super.key});
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  TextEditingController controllerName = TextEditingController();
+
+  TextEditingController controllerEmail = TextEditingController();
+
+  TextEditingController controllerPassword = TextEditingController();
+
+  void signUp() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: controllerEmail.text,
+        password: controllerPassword.text,
+      );
+    } on FirebaseException catch (e) {
+      if (e.code == "user-not-found") {
+        print("User not found");
+      } else if (e.code == "passord-is-wrong")
+        ;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,31 +55,24 @@ class SignUp extends StatelessWidget {
                 obscureText: false,
                 what: "Name",
                 textInputType: TextInputType.name,
-              ),
-              TextFF(
-                obscureText: false,
-                what: "Age",
-                textInputType: TextInputType.number,
-              ),
-              TextFF(
-                obscureText: false,
-                what: "Job",
-                textInputType: TextInputType.text,
+                controller: controllerName,
               ),
               TextFF(
                 obscureText: false,
                 what: "Email",
                 textInputType: TextInputType.emailAddress,
+                controller: controllerEmail,
               ),
-              TextFF(obscureText: true, what: "Password"),
+              TextFF(
+                obscureText: true,
+                what: "Password",
+                controller: controllerPassword,
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 40, bottom: 30),
                 child: MaterialButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Profile()),
-                    );
+                    signUp();
                   },
                   color: Colors.tealAccent,
                   minWidth: double.infinity,

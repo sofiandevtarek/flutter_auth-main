@@ -1,13 +1,15 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/pages/sign_up.dart';
+import 'package:flutter_auth/pages/auth_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(
-    DevicePreview(
-      builder: (context) => const Auth(),
-    ),
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
   );
+  runApp(DevicePreview(builder: (context) => const Auth()));
 }
 
 class Auth extends StatelessWidget {
@@ -17,10 +19,9 @@ class Auth extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xff293037),
-      ),
-      home: SignUp(),
+      theme: ThemeData(scaffoldBackgroundColor: Color(0xff293037)),
+      home: AuthPage(),
     );
   }
 }
+

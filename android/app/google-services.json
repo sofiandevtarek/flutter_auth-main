@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "871496456240",
+    "project_id": "auth-ebcc5",
+    "storage_bucket": "auth-ebcc5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:871496456240:android:bd4d83d0df44ba9c8eb5f5",
+        "android_client_info": {
+          "package_name": "com.example.flutter_auth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaFuJq0kfjkLs1CYJoxQRL4XSi3IebPJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
